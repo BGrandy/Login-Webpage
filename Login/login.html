@@ -1,0 +1,45 @@
+<html>
+
+<head>
+  <link rel='stylesheet' href="login.css" />
+</head>
+
+
+<body id='bID'>
+
+  <div class='centeredPrompt'>
+    <div style="padding-bottom: 150; padding-top: 10px;">
+      <h1> Login </h1>
+    </div>
+
+    <input id='uS' placeholder="Username" /> </br>
+    <input id='pS' placeholder="Password" type="password" /> </br>
+    <button onclick='submitInfo()' type='submit' id='bID'>
+      Log in!
+    </button>
+    <div id='errorMSG'>
+    </div>
+
+  </div>
+
+
+
+  <script>
+    var sUser = "Ben";
+    var sPass = "Secret1!";
+    function submitInfo(event) {
+      var userField = document.getElementById('uS');
+      var passField = document.getElementById('pS');
+      var User = userField.value;
+      var Pass = passField.value;
+      if (User == sUser && Pass == sPass) {
+        
+      } else {
+        document.getElementById('errorMSG').innerHTML = `<div style="color: red; margin-top: 10px">Invalid username and password combination.</div>`
+      }
+    }
+  </script>
+
+</body>
+
+</html>

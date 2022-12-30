@@ -1,0 +1,26 @@
+body {
+    background-color: #3a3a3a;
+  }
+
+  .centeredPrompt {
+    width: 500px;
+    height: 350px;
+    margin: 200px auto;
+    border-radius: 25px;
+    padding-bottom: 25px;
+    text-align: center;
+    background-color: white;
+    border: 1px solid black;
+  }
+
+  input {
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 1px solid black;
+  }
+
+  input:focus {
+    outline: none;
+    box-shadow: none;
+    border-bottom: 2px solid black;
+  }
