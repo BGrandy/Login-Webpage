@@ -24,22 +24,27 @@
 
 
 
+  <script src="users.js"></script>
   <script>
-    var sUser = "Ben";
-    var sPass = "Secret1!";
     function submitInfo(event) {
       var userField = document.getElementById('uS');
       var passField = document.getElementById('pS');
       var User = userField.value;
       var Pass = passField.value;
-      if (User == sUser && Pass == sPass) {
-        location.href = 'file:///C:/Users/bg16pz/Desktop/ReactProjects/Login/profile.html'
-      } else {
-        document.getElementById('errorMSG').innerHTML = `<div style="color: red; margin-top: 10px">Invalid username and password combination.</div>`
+      for (property in users) {
+        var iUser = users[property].username;
+        var iPass = users[property].password;
+        if (User == iUser && Pass == iPass) {
+          var url = `profile.html?name=`;
+          url = url.concat(User);
+          location.href = url;
+        }
       }
+      document.getElementById('errorMSG').innerHTML = `<div style="color: red; margin-top: 10px">Invalid username and password combination.</div>`
     }
+    
+
   </script>
 
 </body>
-
 </html>
