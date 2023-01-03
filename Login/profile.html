@@ -3,7 +3,6 @@
 <head>
     <link rel='stylesheet' href="login.css" />
 </head>
-<script src="users.js"></script>
 
 <body>
     <div>
@@ -15,24 +14,25 @@
                 </div>
 
                 <div style="margin: 20px auto;">
-                <h3 id="addressID"></h3>
+                    <h3 id="addressID"></h3>
                 </div>
 
                 <div style="margin: 20px auto;">
-                <h3 id="emailID"></h3>
+                    <h3 id="emailID"></h3>
                 </div>
-                
+
                 <div style="margin: 20px auto;">
                     <h3 id="phoneNumID"></h3>
                 </div>
 
                 <div style="padding: 5px 100px;">
-                    <button onclick='changePage()' type='submit' id='epID' style="margin-right: 100px;"> Edit Profile </button>
+                    <button onclick='changePage()' type='submit' id='epID' style="margin-right: 100px;"> Edit Profile
+                    </button>
                     <button onclick='logOut()' type='submit' id='loID'> Log out </button>
                 </div>
 
             </div>
-            
+
         </div>
 
     </div>
@@ -45,7 +45,9 @@
     window.onload = function () {
         var url = location.href;
         var User = url.split('=')[1];
-        User = users[User];
+        var storageUser = localStorage.getItem('storage');
+        storageUser = JSON.parse(storageUser);
+        User = storageUser[User];
         document.getElementById("profileID").innerHTML = User.username + "'s Profile";
         document.getElementById("usernameID").innerHTML = "Username: " + User.username;
         document.getElementById("addressID").innerHTML = "Address: " + User.address;
@@ -61,10 +63,10 @@
         location.href = url;
     }
 
-    function logOut(event){
+    function logOut(event) {
         location.href = 'login.html'
     }
-            
+
 </script>
 
 </html>
