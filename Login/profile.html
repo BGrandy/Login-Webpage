@@ -5,21 +5,67 @@
 </head>
 
 <body>
-    <div class="centeredPrompt">
-        <div style="padding-bottom: 150; padding-top: 10px;">
-            <h1> Profile </h1>
+    <div>
+        <div class="centeredPrompt" style="padding-bottom: 50px; padding-top: 10px; height: 250px">
+            <h1 id="profileID"></h1>
+            <div style="text-align: left; padding: 0 25px">
+                <div style="margin: 20px auto;">
+                    <h3 id="usernameID"></h3>
+                </div>
+
+                <div style="margin: 20px auto;">
+                    <h3 id="addressID"></h3>
+                </div>
+
+                <div style="margin: 20px auto;">
+                    <h3 id="emailID"></h3>
+                </div>
+
+                <div style="margin: 20px auto;">
+                    <h3 id="phoneNumID"></h3>
+                </div>
+
+                <div style="padding: 5px 100px;">
+                    <button onclick='changePage()' type='submit' id='epID' style="margin-right: 100px;"> Edit Profile
+                    </button>
+                    <button onclick='logOut()' type='submit' id='loID'> Log out </button>
+                </div>
+
+            </div>
+
         </div>
+
     </div>
 
 
 </body>
 
+
 <script>
     window.onload = function () {
         var url = location.href;
         var User = url.split('=')[1];
-        console.log(User);
+        var storageUser = localStorage.getItem('profile');
+        storageUser = JSON.parse(storageUser);
+        document.getElementById("profileID").innerHTML = storageUser.username + "'s Profile";
+        document.getElementById("usernameID").innerHTML = "Username: " + storageUser.username;
+        document.getElementById("addressID").innerHTML = "Address: " + storageUser.address;
+        document.getElementById("emailID").innerHTML = "Email: " + storageUser.email;
+        document.getElementById("phoneNumID").innerHTML = "Phone Number: " + storageUser.phoneNum;
     }
+
+    function changePage(event) {
+        var url = location.href;
+        var User = url.split('=')[1];
+        url = 'editprofile.html?name=';
+        url = url.concat(User);
+        location.href = url;
+    }
+
+    function logOut(event) {
+        location.href = 'login.html'
+    }
+
 </script>
 
 </html>

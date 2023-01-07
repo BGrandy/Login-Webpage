@@ -1,0 +1,99 @@
+<html>
+
+<head>
+    <link rel='stylesheet' href="login.css" />
+</head>
+
+
+<body>
+
+    <div id="dID" class='centeredPrompt' style="height: 500px">
+        <div style="padding-top: 10px;">
+            <h1 id="hID"></h1>
+        </div>
+        <div style="margin-bottom: 20; text-align: left; padding-left: 25px;">
+            <h3 style="padding-right: 102px; display: inline;">Name: </h3>
+            <input id='nS' />
+        </div>
+        <div style="margin-bottom: 20; text-align: left; padding-left: 25px;">
+            <h3 style="padding-right: 84px; display: inline;">Address: </h3>
+            <input id='aS' />
+        </div>
+        <div style="margin-bottom: 20; text-align: left; padding-left: 25px;">
+            <h3 style="padding-right: 101px; display: inline;">Email: </h3>
+            <input id='eS' />
+        </div>
+        <div style="margin-bottom: 20; text-align: left; padding-left: 25px;">
+            <h3 style="padding-right: 28px; display: inline;">Phone Number: </h3>
+            <input id='pnS' />
+        </div>
+        <div style="margin-bottom: 20; text-align: left; padding-left: 25px;">
+            <h3 style="padding-right: 68px; display: inline;">Username: </h3>
+            <input id='uS' />
+        </div>
+        <div style="margin-bottom: 20; text-align: left; padding-left: 25px;">
+            <h3 style="padding-right: 2px; display: inline;">Current Password: </h3>
+            <input id='cpS' type="password" />
+        </div>
+        <div style="margin-bottom: 20; text-align: left; padding-left: 25px;">
+            <h3 style="padding-right: 32px; display: inline;">New Password: </h3>
+            <input placeholder="Optional" id='npS' type="password" />
+        </div>
+        <button onclick='saveInfo()' type='submit' id='bID'>
+            Save
+        </button>
+        <div id='errorMSG'>
+        </div>
+    </div>
+
+
+    <script type>
+        var url = location.href;
+        var uName = url.split('=')[1];
+        var storageUser = localStorage.getItem('profile');
+        storageUser = JSON.parse(storageUser);
+
+        window.onload = function () {
+            document.getElementById("hID").innerHTML = "Edit " + storageUser.username + "'s Profile";
+        }
+
+        function saveInfo(event) {
+                    var iCurrPass = document.getElementById('cpS').value;
+                    if (storageUser.password == iCurrPass){
+                    var iNewPass = document.getElementById('npS').value;
+                    document.getElementById('dID').style.height = '500px';
+                    document.getElementById('errorMSG').innerHTML = ``;
+                    ((iNewPass == "" || iNewPass == null) ? storageUser.password = iNewPass : storageUser.password = iCurrPass);
+                    storageUser.username = document.getElementById('uS').value;
+                    storageUser.name = document.getElementById('nS').value;
+                    storageUser.address = document.getElementById('aS').value;
+                    storageUser.email = document.getElementById('eS').value;
+                    storageUser.phoneNum = document.getElementById('pnS').value;
+                    var stringifyStorage = JSON.stringify(storageUser)
+                    localStorage.setItem('profile', stringifyStorage);
+                    changePage();
+                }else{
+                document.getElementById('cpS').value = null;
+                document.getElementById('dID').style.height = '520px';
+                document.getElementById('errorMSG').innerHTML = `<div style="color: red; margin-top: 5px">Incorrect password.</div>`
+            }
+        }
+
+        function changePage() {
+            var url = location.href;
+            var User = url.split('=')[1];
+            url = 'profile.html?name=';
+            url = url.concat(User);
+            location.href = url;
+        }
+
+        function checkForNullInput() {
+
+
+        }
+
+    </script>
+
+</body>
+
+</html>
