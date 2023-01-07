@@ -45,14 +45,13 @@
     window.onload = function () {
         var url = location.href;
         var User = url.split('=')[1];
-        var storageUser = localStorage.getItem('storage');
+        var storageUser = localStorage.getItem('profile');
         storageUser = JSON.parse(storageUser);
-        User = storageUser[User];
-        document.getElementById("profileID").innerHTML = User.username + "'s Profile";
-        document.getElementById("usernameID").innerHTML = "Username: " + User.username;
-        document.getElementById("addressID").innerHTML = "Address: " + User.address;
-        document.getElementById("emailID").innerHTML = "Email: " + User.email;
-        document.getElementById("phoneNumID").innerHTML = "Phone Number: " + User.phoneNum;
+        document.getElementById("profileID").innerHTML = storageUser.username + "'s Profile";
+        document.getElementById("usernameID").innerHTML = "Username: " + storageUser.username;
+        document.getElementById("addressID").innerHTML = "Address: " + storageUser.address;
+        document.getElementById("emailID").innerHTML = "Email: " + storageUser.email;
+        document.getElementById("phoneNumID").innerHTML = "Phone Number: " + storageUser.phoneNum;
     }
 
     function changePage(event) {
